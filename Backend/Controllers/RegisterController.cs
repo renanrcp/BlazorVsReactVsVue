@@ -41,7 +41,7 @@ namespace Backend.Controllers
 
             user.Password = null;
 
-            return Created($"{HttpContext.Request.Host}users/{id}", user);
+            return Created($"{HttpContext.Request.Host}users/{user.Id}", user);
         }
     }
 }
