@@ -7,10 +7,19 @@ namespace Backend.Controllers
 {
     [ApiController]
     [AllowAnonymous]
-    public class RegisterController : ControllerBase
+    public class AuthController : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
+        public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
+        {
+            await Task.Delay(0);
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpDelete]
+        public async Task<IActionResult> LogoutAsync()
         {
             await Task.Delay(0);
 
