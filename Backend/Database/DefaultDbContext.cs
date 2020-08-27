@@ -1,3 +1,4 @@
+using Backend.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Database
@@ -7,5 +8,7 @@ namespace Backend.Database
         public DefaultDbContext(DbContextOptions<DefaultDbContext> options) : base(options)
         {
         }
+
+        public DbSet<User> Users { get; set; }
     }
 }
