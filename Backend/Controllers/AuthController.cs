@@ -41,7 +41,7 @@ namespace Backend.Controllers
 
             var userBytes = JsonSerializer.SerializeToUtf8Bytes(user);
 
-            await _cache.SetAsync(token, userBytes, new DistributedCacheEntryOptions
+            await _cache.SetAsync($"tokens_{token}", userBytes, new DistributedCacheEntryOptions
             {
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1),
             });
@@ -52,7 +52,7 @@ namespace Backend.Controllers
         [HttpDelete]
         public async Task<IActionResult> LogoutAsync()
         {
-            var token = Request.Headers[DefaultAuthScheme.SCHEME_NAME];
+            var token = Request.Headers[DefaultAuthScheme.HEADER_AUTH_NAME];
 
             await _cache.RemoveAsync(token);
 

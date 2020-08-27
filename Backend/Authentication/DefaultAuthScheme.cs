@@ -13,7 +13,7 @@ namespace Backend.Authentication
 {
     public class DefaultAuthScheme : AuthenticationHandler<AuthenticationSchemeOptions>
     {
-        private const string HEADER_AUTH_NAME = "Authorization";
+        public const string HEADER_AUTH_NAME = "Authorization";
 
         public const string SCHEME_NAME = "Default";
 
@@ -25,7 +25,7 @@ namespace Backend.Authentication
         {
             var cache = Context.RequestServices.GetRequiredService<IDistributedCache>();
 
-            if (Request.Headers.ContainsKey(HEADER_AUTH_NAME))
+            if (!Request.Headers.ContainsKey(HEADER_AUTH_NAME))
                 return AuthenticateResult.Fail("No authorization header.");
 
             var authorization = Request.Headers[HEADER_AUTH_NAME];

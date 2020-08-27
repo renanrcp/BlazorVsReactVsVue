@@ -41,10 +41,6 @@ namespace Backend.Controllers
             return Ok(user);
         }
 
-        [HttpPost]
-        public IActionResult CreateUser([FromBody] RegisterModel model)
-            => RedirectToAction(nameof(RegisterController.RegisterAsync), nameof(RegisterController));
-
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody] RegisterModel model)
         {
@@ -60,6 +56,10 @@ namespace Backend.Controllers
 
             user.Name = model.Name;
             user.Password = model.Password;
+
+            await _dbContext.SaveChangesAsync();
+
+            user.Password = null;
 
             return Ok(user);
         }
