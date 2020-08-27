@@ -8,9 +8,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers
 {
-    [ApiController]
     [AllowAnonymous]
-    public class RegisterController : ControllerBase
+    public class RegisterController : BaseController
     {
         private readonly DefaultDbContext _dbContext;
 

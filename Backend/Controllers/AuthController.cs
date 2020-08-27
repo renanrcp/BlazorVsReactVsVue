@@ -12,9 +12,7 @@ using Microsoft.Extensions.Caching.Distributed;
 
 namespace Backend.Controllers
 {
-    [ApiController]
-    [AllowAnonymous]
-    public class AuthController : ControllerBase
+    public class AuthController : BaseController
     {
         private readonly DefaultDbContext _dbContext;
         private readonly IDistributedCache _cache;
@@ -26,6 +24,7 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
             if (model == null)
@@ -50,7 +49,6 @@ namespace Backend.Controllers
             return Ok(token);
         }
 
-        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> LogoutAsync()
         {
