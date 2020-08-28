@@ -17,10 +17,15 @@ namespace Blazor
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            new Startup(builder.Configuration, builder.HostEnvironment)
-                .ConfigureServices(builder.Services);
+            var startup = new Startup(builder.Configuration, builder.HostEnvironment);
 
-            await builder.Build().RunAsync();
+            startup.ConfigureServices(builder.Services);
+
+            var host = builder.Build();
+
+            startup.Configure(host.Services);
+
+            await host.RunAsync();
         }
     }
 }

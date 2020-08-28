@@ -23,6 +23,13 @@ namespace Blazor
             {
                 BaseAddress = new Uri(HostEnvironment.BaseAddress)
             });
+
+            services.AddAntDesign();
+        }
+
+        public void Configure(IServiceProvider provider)
+        {
+
         }
     }
 }
